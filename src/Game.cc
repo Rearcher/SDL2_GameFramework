@@ -29,6 +29,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 	std::cout << "init success\n";
 	m_bRunning = true;
 	
+	TheInputHandler::Instance()->initializeJoysticks();
+
 	// todo, load pictures
 	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 50, 50, "hour")));
 	m_gameObjects.push_back(new Player(new LoaderParams(200, 200, 50, 50, "hour")));
@@ -54,6 +56,7 @@ void Game::update() {
 }
 
 void Game::handleEvents() {
+	/*
 	SDL_Event event;
 	if (SDL_PollEvent(&event)) {
 		switch (event.type) {
@@ -63,7 +66,8 @@ void Game::handleEvents() {
 			default:
 				break;
 		}
-	}
+	}*/
+	TheInputHandler::Instance()->update();
 }
 
 void Game::clean() {
@@ -71,6 +75,7 @@ void Game::clean() {
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
+	//TheInputHandler::Instance()->clean();
 }
 
 bool Game::running() {
