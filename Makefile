@@ -1,0 +1,20 @@
+# OBJS specifies which files to compile as part of the project
+OBJS = main.cc Game.cc TextureManager.cc SDLGameObject.cc Player.cc
+
+# CC specifies which compiler we're using
+CC = g++
+
+# COMPILER_FLAGS specifies the additional compilation options we're using
+# -w suppresses all wanings
+# -std=c++11 using standard c++11
+COMPILER_FLAGS = -std=c++11 -g
+
+# LINKER_FLAGS specifies the libraries we're linking against
+LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
+
+# OBJ_NAME specifies the name of our exectuable
+OBJ_NAME = main 
+
+# This is the target that compilers our executable
+all : $(OBJS)
+		$(CC) $(OBJS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
