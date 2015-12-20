@@ -29,7 +29,12 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 	std::cout << "init success\n";
 	m_bRunning = true;
 	
+	// init joysticks
 	TheInputHandler::Instance()->initializeJoysticks();
+
+	// init game states
+	m_pGameStateMachine = new GameStateMachine();
+	m_pGameStateMachine->changeState(new MenuState());
 
 	// todo, load pictures
 	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 50, 50, "hour")));
@@ -43,16 +48,19 @@ void Game::render() {
 	
 //	SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 	// todo, render pictures
-	for (auto i : m_gameObjects)
-		i->draw();
+//	for (auto i : m_gameObjects)
+//		i->draw();
 //	TextureManager::Instance()->draw("hour", 0, 0, 50, 50, m_pRenderer);
 //	TextureManager::Instance()->drawFrame("hour", 100, 100, 50, 50, 1, m_currentFrame, m_pRenderer);
+	m_pGameStateMachine->render();
+	
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::update() {
-	for (auto i : m_gameObjects)
-		i->update();
+//	for (auto i : m_gameObjects)
+//		i->update();
+	m_pGameStateMachine->update();
 }
 
 void Game::handleEvents() {
@@ -68,6 +76,10 @@ void Game::handleEvents() {
 		}
 	}*/
 	TheInputHandler::Instance()->update();
+
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)) {
+		m_pGameStateMachine->changeState(new PlayState());
+	}
 }
 
 void Game::clean() {

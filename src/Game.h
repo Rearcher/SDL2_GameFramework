@@ -1,10 +1,14 @@
 #ifndef _Game_
 #define _Game_
+
 #include "TextureManager.h"
 #include <iostream>
 #include <vector>
 #include "Player.h"
 #include "InputHandler.h"
+#include "GameStateMachine.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 class Game {
 public:
@@ -45,6 +49,8 @@ private:
 
 	static Game *s_pInstance;
 	std::vector<GameObject*> m_gameObjects;
+
+	GameStateMachine *m_pGameStateMachine;
 };
 
 typedef Game TheGame;
