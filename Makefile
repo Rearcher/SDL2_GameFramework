@@ -1,5 +1,5 @@
 # OBJS specifies which files to compile as part of the project
-OBJS = main.cc Game.cc TextureManager.cc SDLGameObject.cc Player.cc
+OBJS = src/main.cc src/Game.cc src/TextureManager.cc src/SDLGameObject.cc src/Player.cc
 
 # CC specifies which compiler we're using
 CC = g++

@@ -32,7 +32,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, in
 	// todo, load pictures
 	m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 50, 50, "hour")));
 	m_gameObjects.push_back(new Player(new LoaderParams(200, 200, 50, 50, "hour")));
-	TextureManager::Instance()->load("hour.bmp", "hour", m_pRenderer);
+	TextureManager::Instance()->load("assets/hour.bmp", "hour", m_pRenderer);
 	return true;
 }
 
