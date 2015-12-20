@@ -27,6 +27,10 @@ public:
 		return m_bJoysticksInitialized;
 	}
 
+	bool getButtonState(int joy, int buttonNumber) {
+		return m_buttonStates[joy][buttonNumber];
+	}
+
 private:
 	InputHandler() {};
 	~InputHandler() {}
@@ -37,6 +41,7 @@ private:
 	bool m_bJoysticksInitialized;
 
 	std::vector<std::pair<Vector2D*, Vector2D*>> m_joystickValues;
+	std::vector<std::vector<bool>> m_buttonStates;
 };
 typedef InputHandler TheInputHandler;
 
