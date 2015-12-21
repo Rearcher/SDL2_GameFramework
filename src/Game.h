@@ -5,10 +5,13 @@
 #include <iostream>
 #include <vector>
 #include "Player.h"
+#include "Enemy.h"
 #include "InputHandler.h"
 #include "GameStateMachine.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include "PauseState.h"
+#include "GameOverState.h"
 
 class Game {
 public:
@@ -31,7 +34,14 @@ public:
 	SDL_Renderer *getRenderer() const {
 		return m_pRenderer;
 	}
+	
+	void exitGame() {
+		m_bRunning = false;
+	}
 
+	GameStateMachine *getStateMachine() {
+		return m_pGameStateMachine;
+	}
 private:
 	Game() {}
 	~Game() {}
